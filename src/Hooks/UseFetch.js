@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from "react";
-import { fetchDataFromApi } from "../utils/api";
+import { fetchData } from '../utils/api'
 
 const useFetch = (url) => {
 
@@ -9,12 +9,12 @@ const useFetch = (url) => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        
+
         setLoading("loading...");
         setData(null);
         setError(null);
 
-        fetchDataFromApi(url)
+        fetchData(url)
             .then((res) => {
                 setLoading(false);
                 setData(res);
@@ -24,7 +24,7 @@ const useFetch = (url) => {
                 setError("Something went wrong!");
                 console.log(err);
             });
-    }, [url]);
+    }, []);
 
     return { data, loading, error };
 };

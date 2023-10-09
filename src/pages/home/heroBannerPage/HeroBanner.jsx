@@ -1,21 +1,38 @@
 
-import React, { useState } from 'react'
+import  { useEffect, useState } from 'react'
 import './style.scss'
+import Img from '../../../components/lazyloading/Img'
+import ContentWrapper from '../../../components/contentWrapper/ContetntWrapper'
+
 
 import { useNavigate } from 'react-router-dom'
 
+import useFetch from '../../../Hooks/UseFetch'
+import { useSelector } from 'react-redux'
+
 const HeroBanner = () => {
+
+  const {url} = useSelector(state => state.home)
 
 const [background , setBackground] = useState("")
 const [query, setQuery] = useState("")
 
+
+const {data, loading} = useFetch('/movie/top_rated')
+
+
 const navigate = useNavigate()
 
+useEffect(()=>{
+    
+    const bg = "https://image.tmdb.org/t/p/original" + data?.results[Math.floor(Math.random() * 20)].backdrop_path
+    console.log(bg);
+    setBackground(bg)
+
+
+},[data])
+
 const searchQueryHanlers = (e) => {
-
-  console.log(e.key);
-  console.log(query);
-
 
   if(e.key === 'Enter' && query.length > 0) {
          navigate(`/search/${query}`)
@@ -25,8 +42,14 @@ const searchQueryHanlers = (e) => {
 
   return (
     <div className="heroBanner">
-       <div className="wraper">
-         <div className="bannerContent">
+    {     !loading && <div className='backdrop_img'>
+
+          <Img src = {background}> </Img>
+
+      </div>}
+
+      <ContentWrapper>
+      <div className="bannerContent">
           <span className="title">
              Wel Come
           </span>
@@ -43,8 +66,12 @@ const searchQueryHanlers = (e) => {
               <button>Search</button>              
           </div>
          </div>
+
+      </ContentWrapper>
+      
+        
        </div>
-    </div>
+  
   )
 }
 
