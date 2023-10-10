@@ -9,6 +9,9 @@ const HomePage = () => {
   return (
     <div className='heroPage'>
         <HeroBanner />
+        <div className=' h-[10000px]'>
+
+        </div>
     </div>
   )
 }
