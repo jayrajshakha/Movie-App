@@ -42,21 +42,21 @@ const searchQueryHanlers = (e) => {
 
   return (
     <div className="heroBanner">
-    {     !loading && <div className='backdrop_img'>
+    {     !loading && <div className='backdrop-img'>
 
           <Img src = {background}> </Img>
 
       </div>}
-
+      <div className="opacity-layer"></div>
       <ContentWrapper>
-      <div className="bannerContent">
+      <div className="heroBannerContent">
           <span className="title">
              Wel Come
           </span>
           <span className="subTitle">
             Millions movies, TV shows and people to discover explore now  
           </span>
-          <div className="serchInput">
+          <div className="searchInput">
             <input 
               onKeyUp={searchQueryHanlers}
               onChange={(e) =>  setQuery(e.target.value)}
