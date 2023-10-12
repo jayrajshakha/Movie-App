@@ -12,19 +12,20 @@ import dayjs from "dayjs";
 import ContentWrapper from "../contentWrapper/ContetntWrapper";
 import Img from "../lazyloading/Img";
 import PosterFallback from "../../assets/no-poster.png";
-// import CircleRating from "../circleRating/CircleRating";
-// import Genres from "../genres/Genres";
-
-import "./style.scss";
 import CircleRating from "../circleRating/CircleRating";
 import Genres from "../genres/Genres";
+
+import "./style.scss";
+
 
 const Carousel = ({data, loading}) => {
 
     const carouselRef = useRef()
 
+    const nevigate = useNavigate()
+
     const navigation = (dir) => {
-        
+
         const container = carouselRef.current;
 
         const scrollAmount =
@@ -79,7 +80,9 @@ const Carousel = ({data, loading}) => {
                                 return (
                                     <div 
                                     key={item.id}
-                                    className="carouselItem">
+                                    className="carouselItem"
+                                    onClick={() => nevigate(`${item.media_type}/${item.id}`)}
+                                    >
                                       <div className="posterBlock">
                                          <Img src={posterUrl} />
                                          <CircleRating rating={item.vote_average.toFixed(1)} />
