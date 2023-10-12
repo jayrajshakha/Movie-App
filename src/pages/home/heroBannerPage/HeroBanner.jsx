@@ -26,6 +26,7 @@ const navigate = useNavigate()
 useEffect(()=>{
     
     const bg = "https://image.tmdb.org/t/p/original" + data?.results[Math.floor(Math.random() * 20)].backdrop_path
+   
     console.log(bg);
     setBackground(bg)
 
