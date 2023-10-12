@@ -23,10 +23,22 @@ const Carousel = ({data, loading}) => {
 
     const carouselRef = useRef()
 
-    const navigation = () => {
+    const navigation = (dir) => {
+        
+        const container = carouselRef.current;
 
-        const container =  carouselRef.current;
-    }
+        const scrollAmount =
+            dir === "left"
+                ? container.scrollLeft - (container.offsetWidth + 20)
+                : container.scrollLeft + (container.offsetWidth + 20);
+
+        container.scrollTo({
+            left: scrollAmount,
+            behavior: "smooth",
+        });
+    };
+
+   
 
     const skItem = () => {
         return (
