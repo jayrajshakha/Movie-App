@@ -13,7 +13,7 @@ import SerchResult from './pages/searchResultsPage/SerchResult'
 import { useEffect } from 'react'
 import {fetchData} from './utils/api'
 import { useDispatch } from 'react-redux'
-import { getApiConfig } from './store/HomeSlice'
+import { getApiConfig, getGenres } from './store/HomeSlice'
   
 const App = () => {
 
@@ -37,8 +37,29 @@ const App = () => {
   useEffect(()=> {
      
     a()
+    genresCall()
 
   },[])
+
+    const genresCall = async () => {
+
+       let promises = [];
+       let endpoints = ['tv','movie'];
+       let allGenres = {};
+
+       endpoints.forEach((url) => {
+        promises.push(fetchData(`/genre/${url}/list`))
+       })
+
+       const data = await Promise.all(promises)
+
+      data.map(({genres}) => {
+            return genres.map((item) => (allGenres[item.id] = item))
+      })
+
+      dispatch(getGenres(allGenres))
+
+    }
 
 
 
