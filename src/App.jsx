@@ -1,5 +1,9 @@
 
 import { BrowserRouter, Routes ,Route  } from 'react-router-dom'
+import { useEffect } from 'react'
+import {fetchData} from './utils/api'
+import { useDispatch } from 'react-redux'
+import { getApiConfig, getGenres } from './store/HomeSlice'
 
 // component and pages are imported here 
 import Header from "./components/header/Header"
@@ -9,11 +13,7 @@ import Detail from "./pages/detailsPage/Detail"
 import Explore from "./pages/expolerPage/Explore"
 import HomePage from "./pages/home/HomePage"
 import SerchResult from './pages/searchResultsPage/SerchResult'
-// import useFetch from './Hooks/UseFetch'
-import { useEffect } from 'react'
-import {fetchData} from './utils/api'
-import { useDispatch } from 'react-redux'
-import { getApiConfig, getGenres } from './store/HomeSlice'
+
   
 const App = () => {
 
@@ -22,7 +22,7 @@ const App = () => {
 
  const a = () => {
         fetchData('/configuration').then(res => {
-          console.log(res)
+          // console.log(res)
 
           const url = {
               backdrop : res.images.secure_base_url + 'original',
@@ -69,7 +69,7 @@ const App = () => {
           <Routes>
             
              <Route path="/"  element={<HomePage />}  />
-             <Route path="/:mediaType:id"  element={<Detail/>}  />
+             <Route path="/:mediaType/:id"  element={<Detail/>}  />
              <Route path="/search/:query"  element={< SerchResult/>}  />
              <Route path="/explore/:mediaType"  element={<Explore/>}  />
              <Route path="/explore/:mediaType"  element={<Explore/>}  />

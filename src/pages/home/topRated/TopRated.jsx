@@ -13,7 +13,7 @@ const TopRated = () => {
     fetchData(`/${endpoint}/top_rated`).then((res) =>( setDt(res), setLoading(false)));
   };
 
-  console.log(loading, endpoint, dt?.results[0].title);
+  // console.log(loading, endpoint, dt?.results[0].title);
 
   useEffect(() => {
     return fetchTime();

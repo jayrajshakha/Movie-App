@@ -4,7 +4,9 @@ import './style.scss'
 
 const Explore = () => {
   return (
-    <div>Detail</div>
+    <div>
+      explore
+    </div>
   )
 }
 

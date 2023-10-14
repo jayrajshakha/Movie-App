@@ -13,7 +13,7 @@ const Popular = () => {
     fetchData(`/discover/${endpoint}`).then((res) =>( setDt(res), setLoading(false)));
   };
 
-  console.log(loading, endpoint, dt?.results[0].title);
+  // console.log(loading, endpoint, dt?.results[0].title);
 
   useEffect(() => {
     return fetchTime();
